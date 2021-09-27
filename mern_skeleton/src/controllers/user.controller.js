@@ -43,7 +43,7 @@ const read = (req, res) => {
 const update = (req, res, next) => {
   let user = req.profile;
   user = _.extend(user, req.body);
-  user.updated = Date.now();
+  user.update = Date.now();
   user.save((err) => {
     if (err) {
       return res.status(400).json({ error: errorHandler.getErrorMessage(err) });
@@ -53,6 +53,7 @@ const update = (req, res, next) => {
     res.json(user);
   });
 };
+
 const remove = (req, res, next) => {
   let user = req.profile;
   user.remove((err, deletedUser) => {
